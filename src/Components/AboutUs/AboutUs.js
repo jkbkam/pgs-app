@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import image1 from './images/box-1.jpg';
-import image2 from './images/box-2.jpg'
-import image3 from './images/box-3.jpg'
-import './AboutUs.css';
+import image1 from '../../img/box-1.jpg';
+import image2 from '../../img/box-2.jpg'
+import image3 from '../../img/box-3.jpg'
 import Feature from '../Feature/Feature';
 
 class AboutUs extends Component {
@@ -13,7 +12,7 @@ class AboutUs extends Component {
       { box: 3, src: image3 }
     ]
     return (
-      <div className="about-us">
+      <div className="about main-box">
         {
           boxes.map(({ box, src }) =>
             <Feature box={box} src={src} key={box} />

@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import './Contact.css';
-
-
 
 class Contact extends Component {
   constructor(props) {
@@ -14,8 +11,8 @@ class Contact extends Component {
       emailValid: false,
       usernameValid: false,
       formValid: false,
-      emailClass: "Email",
-      userClass: "Name"
+      emailClass: "",
+      userClass: ""
     }
   }
 
@@ -38,20 +35,20 @@ class Contact extends Component {
 
     if (this.state.formErrors.username.length > 1) {
       this.setState({
-        userClass: "Name*"
+        userClass: "active"
       })
     } else {
       this.setState({
-        userClass: "Name"
+        userClass: ""
       })
     }
     if (this.state.formErrors.email.length > 1) {
       this.setState({
-        emailClass: "Email*"
+        emailClass: "active"
       })
     } else {
       this.setState({
-        emailClass: "Email"
+        emailClass: ""
       })
     }
   };
@@ -60,7 +57,6 @@ class Contact extends Component {
     let fieldValidationErrors = this.state.formErrors;
     let emailValid = this.state.emailValid;
     let usernameValid = this.state.usernameValid;
-
 
     switch (fieldName) {
       case 'email':
@@ -91,30 +87,36 @@ class Contact extends Component {
 
   render() {
     return (
-      <div className="contact">
+      <div className="contact main-box">
         {this.state.error && <p>{this.state.error.message}</p>}
         <form className="contact-form" onSubmit={this.handleSubmit}>
-          <label>{this.state.userClass}</label>
-          <input
-            name="username"
-            value={this.state.username}
-            onChange={this.handleChange}
-          />
-
-          <label>{this.state.emailClass}</label>
-          <input
-            name="email"
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
-
-          <label>Message</label>
-          <input
-            name="message"
-            value={this.state.message}
-            onChange={this.handleChange}
-          />
-          <button className="contact-button">Send</button>
+          <div className={this.state.userClass + " row"}>
+            <label>Name</label>
+            <input
+              name="username"
+              value={this.state.username}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className={this.state.emailClass + " row"}>
+            <label>Email</label>
+            <input
+              name="email"
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="row">
+            <label>Message</label>
+            <input
+              name="message"
+              value={this.state.message}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="button-row">
+            <button className="contact-button">Send</button>
+          </div>
         </form>
       </div>
     );

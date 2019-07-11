@@ -1,0 +1,337 @@
+$backgroundColor: #f9f9f9;
+$greyLine: #eaeaea;
+$hoverElement: #ee7329;
+$greyFont: #6d6a6a;
+$buttonColor: #0087ff;
+$boxShadow: #828282;
+
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+  color: $greyFont;
+}
+
+.main-page {
+  height: 100vh;
+}
+
+header {
+  width: 100%;
+  height: 80px;
+  background-color: white;
+  border-bottom: 1px solid $greyLine;
+
+  .nav {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+
+    &-logo {
+      width: 73px;
+      margin: 0 auto;
+    }
+
+    &-menu {
+      ul {
+        list-style-type: none;
+        text-transform: uppercase;
+        font-size: 14px;
+        padding: 10px 0 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        li {
+          display: inline-block;
+          width: 30%;
+          text-align: center;
+          a {
+            padding: 5px 0;
+            text-decoration: none;
+            color: $greyFont;
+
+            &:hover {
+              color: $hoverElement;
+              border-bottom: 2px solid $hoverElement;
+            }
+          }
+
+          .active {
+            color: $hoverElement;
+            border-bottom: 2px solid $hoverElement;
+          }
+        }
+      }
+    }
+  }
+}
+
+section {
+  width: 100%;
+  min-height: calc(100vh - 160px);
+  background-color: $backgroundColor;
+  position: relative;
+
+  .main-box {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 10%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .about {
+    &-box {
+      width: 68%;
+      margin-bottom: 10%;
+      background-color: white;
+      box-shadow: 0 0 3px $greyLine;
+
+      p,
+      h1 {
+        width: 90%;
+      }
+
+      h1 {
+        font-weight: 400;
+        margin: 10% auto 4%;
+      }
+
+      p {
+        margin: 4% auto 8%;
+      }
+    }
+  }
+
+  .ski-cams {
+    &-box {
+      width: 80%;
+      margin-bottom: 10%;
+      background-color: white;
+      box-shadow: 0 0 3px $greyLine;
+
+      p {
+        text-align: end;
+        padding-right: 10px;
+        margin: 10px 0 5px;
+      }
+
+      h1 {
+        text-align: center;
+        font-weight: 400;
+        margin: 5px 0 10px;
+      }
+    }
+  }
+
+  .contact {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-top: 0;
+
+    &-form {
+      width: 80%;
+      margin: 0 auto;
+      background-color: white;
+      box-shadow: 0 0 3px $greyLine;
+
+      .row {
+        width: 90%;
+        margin: 5px auto;
+        border-bottom: 1px solid $greyLine;
+        &:first-child {
+          margin-top: 15px;
+        }
+        label {
+          padding-right: 5px;
+        }
+
+        input {
+          border: 0;
+          width: 100%;
+        }
+      }
+
+      .active {
+        label:after {
+          content: "*";
+          color: orange;
+        }
+      }
+
+      .button-row {
+        width: 90%;
+        margin: 15px auto;
+        text-align: end;
+
+        button {
+          background-color: $buttonColor;
+          border: none;
+          border-radius: 2px;
+          color: white;
+          padding: 6px 12px;
+          box-shadow: 1px 1px $boxShadow;
+          text-transform: uppercase;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  width: 100%;
+  height: 60px;
+  background-color: black;
+  padding-top: 20px;
+  .brand {
+    width: 160px;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 10px;
+    border-top: 1px solid $greyFont;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  header {
+    .nav {
+      width: 80%;
+
+      &-logo {
+        margin: 0;
+      }
+
+      &-menu {
+        ul {
+          justify-content: flex-start;
+          li {
+            width: 15%;
+            text-align: unset;
+          }
+        }
+      }
+    }
+  }
+
+  section {
+    .main-box {
+      width: 80%;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  header {
+    height: 158px;
+
+    .nav {
+      width: 66%;
+
+      &-logo {
+        width: 136px;
+        padding-top: 24px;
+      }
+
+      &-menu {
+        ul {
+          padding: 18px 0 0;
+          display: flex;
+          justify-content: flex-start;
+          li {
+            width: 12%;
+            a {
+              padding: 9px 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  section {
+    min-height: calc(100vh - 340px);
+
+    .main-box {
+      width: 66%;
+      padding-top: 3%;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+    }
+
+    .about {
+      &-box {
+        width: 31%;
+      }
+    }
+
+    .ski-cams {
+      &-box {
+        width: 48%;
+
+        p {
+          font-size: 12px;
+          margin: 2px 0 5px;
+        }
+
+        h1 {
+          margin: 0 0 15px;
+        }
+      }
+    }
+    .contact {
+      padding-top: 0;
+      width: 32%;
+
+      &-form {
+        width: 100%;
+
+        .row {
+          width: 58%;
+          margin: 40px auto;
+          padding-bottom: 5px;
+          &:first-child {
+            margin-top: 75px;
+          }
+
+          input {
+            width: 70%;
+          }
+        }
+
+        .button-row {
+          width: 47%;
+          margin-bottom: 70px;
+
+          button {
+            padding: 8px 28px;
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    height: 162px;
+    padding-top: 30px;
+    .brand {
+      width: 300px;
+      padding-top: 18px;
+    }
+  }
+}
