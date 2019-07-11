@@ -13,13 +13,13 @@ class NavBar extends Component {
           <div className="nav-menu">
             <ul>
               <li>
-                <NavLink to="/about-us" activeClassName="active">About us</NavLink>
+                <NavLink exact={true} to="/" activeClassName="active" >About us</NavLink>
               </li>
               <li>
-                <NavLink to="/ski-cams">Ski Cams</NavLink>
+                <NavLink to="/ski-cams" activeClassName="active">Ski Cams</NavLink>
               </li>
               <li>
-                <NavLink to="/contact">Contact</NavLink>
+                <NavLink to="/contact" activeClassName="active">Contact</NavLink>
               </li>
             </ul>
           </div>
