@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import moment from 'moment'
 import CamView from '../CamView/CamView';
 
+import data from './skicam.json';
+
 function handleResponse(response) {
   if (response.status === 404) {
     return Promise.reject(response);
@@ -20,6 +22,26 @@ class SkiCams extends Component {
     };
   }
 
+  showCam(place) {
+    const objVal = Object.values(data)
+    const onePlace = objVal.filter(function (value) {
+      return value.name === place
+    }).map(function (value) {
+      let arr = {}
+      return arr = { [value.name]: value.cams }
+    }).reduce(
+      (plc, cam) => Object.assign(plc, cam),
+      {}
+    )
+    var objValCam = Object.values(onePlace[place])
+    var objCams = objValCam.map(function (value) {
+      return value.url
+    })
+    const views = objCams
+
+    return views
+  }
+
   componentWillMount() {
     fetch("https://makevoid-skicams.p.mashape.com/cams.json", {
       method: "GET",
@@ -30,35 +52,40 @@ class SkiCams extends Component {
     })
       .then(handleResponse)
       .then(json => {
-        const views = [
-          json[191].cams[547].url,
-          json[191].cams[548].url,
-          json[32].cams[124].url,
-          json[32].cams[126].url
-        ];
-        this.setState(prevState => ({
-          places: [views, ...prevState.places]
-        }))
+        //API cały wieczór rzuca 503 i nie mam jak sprawdzać efektów dlatego zaimportowałem jsona lokalnie. 
       })
+
+    var views1 = this.showCam("Passo dello Stelvio")
+    var views2 = this.showCam("Bielmonte")
+    this.setState(prevState => ({
+      places: [views1, views2, ...prevState]
+    }))
   }
 
   render() {
     const NewDate = this.state.dateFormatted;
+    const place1 = this.state.places[0];
+    const place2 = this.state.places[1];
+  
+    function randomCam(value) {
+      var min = 0;
+      var max = value.length
+      return Math.floor(Math.random() * (max - min) + min)
+    }
 
-    if (this.state.places[0] === null) return null;
     return (
       <div className="ski-cams main-box">
         <div className="ski-cams-box">
           <p>{NewDate}</p>
           <h1>Passo dello Stelvio</h1>
-          <CamView src={this.state.places[0][0]} />
-          <CamView src={this.state.places[0][1]} />
+          <CamView src={place1[randomCam(place1)]} /> 
+          <CamView src={place1[randomCam(place1)]} />
         </div>
         <div className="ski-cams-box">
           <p>{NewDate}</p>
-          <h1>Biel monte</h1>
-          <CamView src={this.state.places[0][2]} />
-          <CamView src={this.state.places[0][3]} />
+          <h1>Bielmonte</h1>
+          <CamView src={place2[randomCam(place2)]} />
+          <CamView src={place2[randomCam(place2)]} />
         </div>
       </div>
     );
